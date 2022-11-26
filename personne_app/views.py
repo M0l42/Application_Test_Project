@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import FormView
+from django.views.generic.list import ListView
 from personne_app.forms import PersonneForm
 from personne_app.models import Personne
 
@@ -18,3 +19,14 @@ class PersonneFormView(FormView):
 
         return super().form_valid(form)
 
+
+class PersonneListView(ListView):
+    model = Personne
+    paginate_by = 20
+    ordering = ['-birthday']
+    template_name = 'personne_app/personne_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Personne List'
+        return context
