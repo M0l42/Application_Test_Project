@@ -5,7 +5,7 @@ from personne_app.models import Personne
 
 
 class PersonneFormView(FormView):
-    template_name = 'personne_form.html'
+    template_name = 'personne_app/personne_form.html'
     form_class = PersonneForm
 
     def form_valid(self, form):
