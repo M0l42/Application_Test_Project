@@ -1,0 +1,20 @@
+<ul>
+
+    {% for object in object_list %}
+        {% autoescape off %}
+            <li id="{{ object.id }}">
+                    {{ object.last_name }}
+                    {{ object.first_name }}
+                    {{ object.age }} ans
+            </li>
+        {% endautoescape %}
+    {% empty %}
+        <li>
+            <p>Veuillez Ajouter des Personnes dans la liste</p>
+        </li>
+    {% endfor %}
+</ul>
+
+<button type="button">
+    <a href="{% url 'personne_add' %}">Ajouter</a>
+</button>

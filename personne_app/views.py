@@ -3,11 +3,13 @@ from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
 from personne_app.forms import PersonneForm
 from personne_app.models import Personne
+from django.urls import reverse
 
 
 class PersonneFormView(FormView):
     template_name = 'personne_app/personne_form.html'
     form_class = PersonneForm
+    success_url = '/'
 
     def form_valid(self, form):
         first_name = form.cleaned_data['first_name']
@@ -23,7 +25,7 @@ class PersonneFormView(FormView):
 class PersonneListView(ListView):
     model = Personne
     paginate_by = 20
-    ordering = ['-birthday']
+    ordering = ['last_name']
     template_name = 'personne_app/personne_list.html'
 
     def get_context_data(self, **kwargs):
